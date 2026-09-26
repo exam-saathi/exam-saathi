@@ -1,105 +1,115 @@
-import Link from "next/link";
-import {
-  BookOpen,
-  Mail,
-  ShieldCheck,
-} from "lucide-react";
-
 export default function Footer() {
+  const skills = [
+    "Ethical Hacking",
+    "Cyber Security",
+    "Python Programming",
+    "JavaScript",
+    "React / Next.js",
+    "Web Development",
+    "Linux & Termux",
+    "Git & GitHub",
+    "Computer Networking",
+    "SQL & Databases",
+    "UI / UX Design",
+    "C / C++",
+    "Security Labs",
+    "CTF & Cyber Practice",
+  ];
+
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 text-slate-300">
-      <div className="mx-auto max-w-7xl px-4 py-10">
+    <footer className="mt-12 bg-[#020617] text-white">
+      <div className="mx-auto max-w-7xl px-6 py-12">
 
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-4">
 
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white">
-                <BookOpen size={20} />
-              </div>
-
-              <div className="text-xl font-extrabold text-white">
-                Exam<span className="text-orange-500">Sathi</span>
-              </div>
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2 text-xl font-bold">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600">
+                📖
+              </span>
+              <span>
+                Exam<span className="text-blue-400">Sathi</span>
+              </span>
             </div>
 
-            <p className="mt-4 max-w-md text-sm leading-7 text-slate-400">
+            <p className="mt-4 text-sm leading-6 text-slate-400">
               हिंदी माध्यम के विद्यार्थियों के लिए प्रतियोगी परीक्षाओं की
-              तैयारी, अभ्यास टेस्ट, क्विज़, नोट्स और सीखने की सामग्री।
+              तैयारी, अभ्यास टेस्ट, क्विज़, नोट्स और मॉक टेस्ट।
             </p>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-white">
+            <h3 className="mb-4 text-sm font-bold text-white">
               त्वरित लिंक
             </h3>
 
-            <div className="mt-4 flex flex-col gap-3 text-sm">
-              <Link href="/quizzes" className="hover:text-white">
-                क्विज़
-              </Link>
-
-              <Link href="/mock-tests" className="hover:text-white">
-                मॉक टेस्ट
-              </Link>
-
-              <Link href="/courses" className="hover:text-white">
-                कोर्स
-              </Link>
-
-              <Link href="/notes" className="hover:text-white">
-                नोट्स
-              </Link>
+            <div className="space-y-3 text-sm text-slate-400">
+              <a href="/" className="block hover:text-blue-400">होम</a>
+              <a href="/mock-tests" className="block hover:text-blue-400">मॉक टेस्ट</a>
+              <a href="/quizzes" className="block hover:text-blue-400">क्विज़</a>
+              <a href="/courses" className="block hover:text-blue-400">कोर्स</a>
+              <a href="/leaderboard" className="block hover:text-blue-400">लीडरबोर्ड</a>
             </div>
           </div>
 
+          {/* Skills */}
           <div>
-            <h3 className="font-bold text-white">
+            <h3 className="mb-4 text-sm font-bold text-white">
+              ⚡ Skills & Technology
+            </h3>
+
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="rounded-full border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-blue-500 hover:text-blue-400"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="mb-4 text-sm font-bold text-white">
               सहायता
             </h3>
 
-            <div className="mt-4 flex flex-col gap-3 text-sm">
-              <Link
-                href="/contact"
-                className="flex items-center gap-2 hover:text-white"
-              >
-                <Mail size={16} />
-                संपर्क करें
-              </Link>
+            <div className="space-y-3 text-sm text-slate-400">
+              <a href="/contact" className="block hover:text-blue-400">
+                ✉ संपर्क करें
+              </a>
+              <a href="/privacy" className="block hover:text-blue-400">
+                🔒 प्राइवेसी
+              </a>
 
-              <Link
-                href="/privacy"
-                className="flex items-center gap-2 hover:text-white"
-              >
-                <ShieldCheck size={16} />
-                प्राइवेसी
-              </Link>
+              <div className="mt-5 rounded-xl border border-blue-900/50 bg-blue-950/40 p-4">
+                <p className="text-xs font-semibold text-blue-300">
+                  🚀 Learn • Practice • Achieve
+                </p>
+                <p className="mt-1 text-xs text-slate-500">
+                  लगातार सीखें और अपनी तैयारी बेहतर बनाएं।
+                </p>
+              </div>
             </div>
           </div>
 
         </div>
 
-        {/* Developer Branding */}
-        <div className="mt-8 border-t border-slate-800 pt-6 text-center">
+        <div className="my-8 h-px bg-slate-800" />
 
+        <div className="flex flex-col items-center justify-between gap-3 text-center sm:flex-row">
           <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} ExamSathi. सभी अधिकार सुरक्षित।
+            © 2026 ExamSathi. सभी अधिकार सुरक्षित।
           </p>
 
-          <p className="mt-2 text-sm font-bold tracking-wide">
-            <span className="text-slate-500">
-              Developer by{" "}
-            </span>
-
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-orange-400 bg-clip-text text-transparent">
-              LOYAL ji
-            </span>
-
-            <span className="ml-1 text-orange-400">
-              ✦
-            </span>
+          <p className="text-xs font-semibold text-slate-500">
+            Developed by{" "}
+            <span className="text-blue-400">LOYAL ji</span> ✦
           </p>
-
         </div>
 
       </div>
