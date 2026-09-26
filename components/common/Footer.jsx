@@ -147,8 +147,7 @@ export default function Footer() {
 
       </div>
 
-      {/* LOYAL ANIMATION */}
-      <style jsx>{`
+      <style dangerouslySetInnerHTML={{__html: `
         .loyal-rainbow {
           background: linear-gradient(
             90deg,
@@ -169,19 +168,11 @@ export default function Footer() {
         }
 
         @keyframes loyalColor {
-          0% {
-            background-position: 0% 50%;
-          }
-
-          50% {
-            background-position: 100% 50%;
-          }
-
-          100% {
-            background-position: 0% 50%;
-          }
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
-      `}</style>
+      `}} />
     </footer>
   );
 }
