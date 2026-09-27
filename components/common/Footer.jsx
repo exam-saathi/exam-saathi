@@ -1,4 +1,8 @@
+"use client";
+import { useState } from "react";
+
 export default function Footer() {
+  const [showSkills, setShowSkills] = useState(false);
   const skills = [
     "Ethical Hacking",
     "Cyber Security",
@@ -66,60 +70,64 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* PREMIUM SKILLS */}
+          {/* COMPACT SKILLS MENU */}
           <div>
-            <div className="mb-5 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/30 bg-blue-500/10 text-lg">
-                ⚡
-              </div>
+            <h3 className="mb-5 text-sm font-bold text-white">
+              ⚡ Menu
+            </h3>
 
-              <div>
-                <h3 className="text-sm font-extrabold text-white">
-                  Skills & Technology
-                </h3>
-
-                <p className="text-[10px] tracking-widest text-slate-500">
-                  LOYAL TECH STACK
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-4 shadow-xl">
-
-              <div className="mb-4 flex items-center justify-between">
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">
-                  Expertise
-                </span>
-
-                <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 text-[9px] font-bold text-emerald-400">
-                  ● ACTIVE
-                </span>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill, index) => (
-                  <span
-                    key={skill}
-                    className="rounded-xl border border-slate-700 bg-slate-900 px-2.5 py-2 text-[10px] font-semibold text-slate-300 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/60 hover:bg-blue-500/10 hover:text-blue-300"
-                  >
-                    <span className="mr-1">{icons[index]}</span>
-                    {skill}
+            <button
+              type="button"
+              onClick={() => setShowSkills(!showSkills)}
+              className="group flex w-full items-center justify-between rounded-2xl border border-slate-700 bg-slate-950/80 px-4 py-3 text-left shadow-lg transition-all hover:border-blue-500/60 hover:bg-slate-900"
+            >
+              <span className="flex items-center gap-3">
+                <span className="text-xl">☰</span>
+                <span>
+                  <span className="block text-sm font-bold text-white">
+                    Skills
                   </span>
-                ))}
-              </div>
-
-              <div className="my-4 h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
-
-              <div className="flex items-center justify-between">
-                <span className="text-[9px] text-slate-500">
-                  TECH • SECURITY • DEVELOPMENT
+                  <span className="block text-[9px] tracking-widest text-slate-500">
+                    LOYAL TECH
+                  </span>
                 </span>
+              </span>
 
-                <span className="text-[11px] font-black tracking-widest text-blue-400">
-                  LOYAL
-                </span>
+              <span className="text-slate-400 transition-transform duration-300 group-hover:text-blue-400">
+                {showSkills ? "⌃" : "⌄"}
+              </span>
+            </button>
+
+            {showSkills && (
+              <div className="mt-3 rounded-2xl border border-blue-500/20 bg-slate-950/95 p-4 shadow-2xl shadow-blue-950/30">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                    LOYAL SKILLS
+                  </span>
+
+                  <span className="rounded-full bg-emerald-500/10 px-2 py-1 text-[9px] font-bold text-emerald-400">
+                    ● ACTIVE
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1.5 text-[10px] font-medium text-slate-300 transition hover:border-blue-500 hover:text-blue-300"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-4 border-t border-slate-800 pt-3 text-center">
+                  <span className="loyal-color text-xs font-black tracking-[0.3em]">
+                    LOYAL
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* SUPPORT */}
@@ -168,6 +176,33 @@ export default function Footer() {
         </div>
 
       </div>
+
+      <style dangerouslySetInnerHTML={{__html: `
+        .loyal-color {
+          background: linear-gradient(
+            90deg,
+            #00e5ff,
+            #3b82f6,
+            #a855f7,
+            #ec4899,
+            #f97316,
+            #22c55e,
+            #00e5ff
+          );
+          background-size: 400% 100%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation: loyalColor 5s linear infinite;
+        }
+
+        @keyframes loyalColor {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}} />
+
     </footer>
   );
 }
