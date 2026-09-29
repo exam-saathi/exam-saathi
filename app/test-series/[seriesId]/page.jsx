@@ -1,131 +1,75 @@
-"use client";
-
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import {
-  ArrowLeft,
-  ClipboardCheck,
-  Clock3,
-  Play,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, ClipboardCheck, Clock3 } from "lucide-react";
+import Navbar from "@/components/common/Navbar";
+import { testSeries } from "@/data/test-series";
 
-const examNames = {
-  uppsc: "UPPCS",
-  upsc: "UPSC",
-  ssc: "SSC",
-  railway: "Railway",
-  banking: "Banking",
-  police: "Police",
-};
+export default async function SeriesDetailPage({ params }) {
+  const { seriesId } = await params;
+  const series = testSeries.find((item) => item.id === seriesId);
 
-export default function SeriesDetailPage() {
-  const params = useParams();
-
-  const exam =
-    examNames[params.seriesId] || "Government Exam";
-
-  const tests = Array.from({ length: 20 }, (_, index) => index + 1);
+  if (!series) {
+    return (
+      <main className="min-h-screen bg-slate-950 text-white">
+        <Navbar />
+        <div className="px-4 py-20 text-center">
+          <h1 className="text-3xl font-black">Test Series नहीं मिली</h1>
+          <Link href="/test-series" className="mt-6 inline-block text-cyan-400">
+            ← सभी Test Series
+          </Link>
+        </div>
+      </main>
+    );
+  }
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-slate-950 text-white">
+      <Navbar />
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-blue-700 to-orange-500 text-white">
-        <div className="mx-auto max-w-5xl px-5 py-9">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <Link
+          href="/test-series"
+          className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          All Test Series
+        </Link>
 
-          <Link
-            href="/test-series"
-            className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-white/90"
-          >
-            <ArrowLeft size={18} />
-            सभी Test Series
-          </Link>
+        <div className="mt-8 rounded-3xl border border-blue-400/20 bg-gradient-to-br from-blue-600/10 via-slate-900 to-cyan-500/10 p-8">
+          <ClipboardCheck className="h-10 w-10 text-cyan-300" />
 
-          <p className="text-sm font-bold tracking-widest text-white/80">
-            EXAMSATHI TEST SERIES
-          </p>
-
-          <h1 className="mt-2 text-4xl font-black">
-            {exam}
-          </h1>
-
-          <p className="mt-2 text-white/90">
-            Test 1 से Test 20 तक
-          </p>
-
-        </div>
-      </section>
-
-      {/* Tests */}
-      <section className="mx-auto max-w-5xl px-5 py-9">
-
-        <div className="mb-6">
-          <h2 className="text-2xl font-black text-slate-900">
-            {exam} Test Series
-          </h2>
-
-          <p className="text-slate-500">
-            अभी questions नहीं जोड़े गए हैं। पहले test structure तैयार है।
-          </p>
+          <h1 className="mt-5 text-4xl font-black">{series.title}</h1>
+          <p className="mt-2 text-lg text-cyan-300">{series.subtitle}</p>
+          <p className="mt-4 text-slate-400">{series.description}</p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-
-          {tests.map((test) => (
+        <div className="mt-10 space-y-4">
+          {series.tests?.map((test) => (
             <Link
-              key={test}
-              href={`/quizzes/${params.seriesId}-test-${test}`}
-              className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              key={test.id}
+              href={`/test-series/${series.id}/${test.id}`}
+              className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition hover:border-cyan-400/40 hover:bg-white/[0.07]"
             >
+              <div>
+                <h2 className="font-black">{test.title}</h2>
 
-              <div className="flex items-center justify-between">
+                <div className="mt-2 flex flex-wrap gap-4 text-xs text-slate-500">
+                  <span className="flex items-center gap-1">
+                    <ClipboardCheck className="h-4 w-4" />
+                    {test.questions} Questions
+                  </span>
 
-                <div className="flex items-center gap-3">
-
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 font-black text-white">
-                    {test}
-                  </div>
-
-                  <div>
-                    <h3 className="font-black text-slate-900">
-                      Test {test}
-                    </h3>
-
-                    <p className="text-xs text-slate-500">
-                      {exam} Practice Test
-                    </p>
-                  </div>
-
+                  <span className="flex items-center gap-1">
+                    <Clock3 className="h-4 w-4" />
+                    {test.duration} Minutes
+                  </span>
                 </div>
-
-                <Play
-                  size={20}
-                  className="text-orange-500 transition group-hover:translate-x-1"
-                />
-
               </div>
 
-              <div className="mt-4 flex gap-3 text-xs text-slate-500">
-
-                <span className="flex items-center gap-1">
-                  <ClipboardCheck size={14} />
-                  Questions
-                </span>
-
-                <span className="flex items-center gap-1">
-                  <Clock3 size={14} />
-                  Mock Test
-                </span>
-
-              </div>
-
+              <ArrowRight className="h-5 w-5 text-cyan-400 transition group-hover:translate-x-1" />
             </Link>
           ))}
-
         </div>
-
       </section>
-
     </main>
   );
 }

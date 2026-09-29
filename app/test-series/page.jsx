@@ -1,190 +1,64 @@
-"use client";
-
 import Link from "next/link";
-import {
-  ClipboardList,
-  ArrowRight,
-  Trophy,
-  Clock3,
-  FileCheck2,
-} from "lucide-react";
-
-const exams = [
-  {
-    id: "uppsc",
-    title: "UPPCS",
-    subtitle: "उत्तर प्रदेश लोक सेवा आयोग",
-    tests: 20,
-    color: "from-blue-600 to-indigo-600",
-  },
-  {
-    id: "upsc",
-    title: "UPSC",
-    subtitle: "Civil Services Examination",
-    tests: 20,
-    color: "from-orange-500 to-red-500",
-  },
-  {
-    id: "ssc",
-    title: "SSC",
-    subtitle: "Staff Selection Commission",
-    tests: 20,
-    color: "from-purple-600 to-blue-600",
-  },
-  {
-    id: "railway",
-    title: "Railway",
-    subtitle: "RRB Competitive Exams",
-    tests: 20,
-    color: "from-emerald-500 to-teal-600",
-  },
-  {
-    id: "banking",
-    title: "Banking",
-    subtitle: "Banking Examination",
-    tests: 20,
-    color: "from-pink-500 to-rose-600",
-  },
-  {
-    id: "police",
-    title: "Police",
-    subtitle: "Police & Constable Exams",
-    tests: 20,
-    color: "from-slate-700 to-slate-950",
-  },
-];
+import { ArrowRight, ClipboardCheck, Clock3 } from "lucide-react";
+import Navbar from "@/components/common/Navbar";
+import { testSeries } from "@/data/test-series";
 
 export default function TestSeriesPage() {
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-slate-950 text-white">
+      <Navbar />
 
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-700 via-blue-600 to-orange-500 text-white">
-        <div className="mx-auto max-w-6xl px-5 py-12">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-400">
+          Exam Saathi • Test Series
+        </p>
 
-          <div className="flex items-center gap-3">
-            <div className="rounded-2xl bg-white/15 p-3 backdrop-blur">
-              <ClipboardList size={30} />
-            </div>
+        <h1 className="mt-3 text-4xl font-black sm:text-5xl">
+          Test <span className="text-cyan-400">Series</span>
+        </h1>
 
-            <span className="font-bold tracking-widest">
-              EXAMSATHI TEST SERIES
-            </span>
-          </div>
+        <p className="mt-4 max-w-2xl text-slate-400">
+          Exam-wise structured test series — Batches और Mock Tests से अलग।
+        </p>
 
-          <h1 className="mt-6 text-4xl font-black sm:text-6xl">
-            All Government Exams
-          </h1>
-
-          <p className="mt-4 max-w-2xl text-lg text-blue-50">
-            विभिन्न प्रतियोगी परीक्षाओं के लिए structured test series।
-            हर परीक्षा के लिए Test 1 से Test 20 तक अभ्यास करें।
-          </p>
-
-        </div>
-      </section>
-
-      {/* Exam Cards */}
-      <section className="mx-auto max-w-6xl px-5 py-10">
-
-        <div className="mb-7">
-          <h2 className="text-2xl font-black text-slate-900">
-            परीक्षा चुनें
-          </h2>
-
-          <p className="mt-1 text-slate-500">
-            अपनी परीक्षा की Test Series खोलें।
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-          {exams.map((exam) => (
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {testSeries.map((series) => (
             <Link
-              key={exam.id}
-              href={`/test-series/${exam.id}`}
-              className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+              key={series.id}
+              href={`/test-series/${series.id}`}
+              className="group rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition hover:-translate-y-1 hover:border-blue-400/40"
             >
-
-              <div className={`h-3 bg-gradient-to-r ${exam.color}`} />
-
-              <div className="p-6">
-
-                <div className="flex items-start justify-between">
-
-                  <div
-                    className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${exam.color} text-xl font-black text-white`}
-                  >
-                    {exam.title.charAt(0)}
-                  </div>
-
-                  <ArrowRight
-                    size={24}
-                    className="text-slate-300 transition group-hover:translate-x-1 group-hover:text-blue-600"
-                  />
-
+              <div className="flex items-center justify-between">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/10">
+                  <ClipboardCheck className="h-7 w-7 text-cyan-300" />
                 </div>
 
-                <h3 className="mt-5 text-2xl font-black text-slate-900">
-                  {exam.title}
-                </h3>
+                <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-black text-emerald-300">
+                  {series.status}
+                </span>
+              </div>
 
-                <p className="mt-1 text-sm text-slate-500">
-                  {exam.subtitle}
-                </p>
+              <h2 className="mt-6 text-2xl font-black">{series.title}</h2>
+              <p className="mt-2 text-cyan-300">{series.subtitle}</p>
 
-                <div className="mt-6 flex gap-3">
+              <p className="mt-3 text-sm leading-6 text-slate-400">
+                {series.description}
+              </p>
 
-                  <div className="flex items-center gap-2 rounded-xl bg-blue-50 px-3 py-2 text-sm font-semibold text-blue-700">
-                    <FileCheck2 size={16} />
-                    {exam.tests} Tests
-                  </div>
+              <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
+                <span className="text-sm text-slate-500">
+                  {series.tests?.length || 0} Tests
+                </span>
 
-                  <div className="flex items-center gap-2 rounded-xl bg-orange-50 px-3 py-2 text-sm font-semibold text-orange-600">
-                    <Clock3 size={16} />
-                    Practice
-                  </div>
-
-                </div>
-
+                <span className="flex items-center gap-2 font-bold text-cyan-300">
+                  Open Series
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1" />
+                </span>
               </div>
             </Link>
           ))}
-
         </div>
-
-        {/* Info */}
-        <div className="mt-10 rounded-3xl bg-white p-6 shadow-sm">
-
-          <div className="flex gap-4">
-
-            <div className="rounded-2xl bg-orange-50 p-4 text-orange-500">
-              <Trophy size={28} />
-            </div>
-
-            <div>
-              <h3 className="font-black text-slate-900">
-                नियमित अभ्यास करें
-              </h3>
-
-              <p className="mt-1 text-sm leading-6 text-slate-500">
-                प्रत्येक Test के बाद अपना score और performance analysis देखें।
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-
       </section>
-
-      <footer className="border-t bg-white py-6 text-center text-sm text-slate-500">
-        <p>© 2026 ExamSathi</p>
-        <p className="mt-1 font-bold text-blue-600">
-          Developed by LOYAL ji
-        </p>
-      </footer>
-
     </main>
   );
 }
