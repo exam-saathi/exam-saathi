@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function Page() {
-  const items = ['UPSC Test Series', 'UPPSC Test Series', 'UP All Exams Test Series', 'Bihar All Exams Test Series', 'Subject-wise Tests', 'Full-length Mock Tests', 'Current Affairs Tests', 'Previous Year Question Tests'];
+  const items = ['Top Rankers', 'Student Scorecards', 'Test Results', 'All India Rank', 'Subject-wise Performance', 'Accuracy Analysis', 'Success Stories'];
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -21,7 +21,7 @@ export default function Page() {
           <p className="text-xs font-black tracking-[.25em] text-orange-400">
             LOYAL EDUCATION HUB
           </p>
-          <h1 className="mt-4 text-4xl font-black sm:text-6xl">Professional Test Series</h1>
+          <h1 className="mt-4 text-4xl font-black sm:text-6xl">Results & Performance</h1>
           <p className="mt-5 text-slate-400">
             Smart practice, detailed solutions और performance-focused preparation.
           </p>
