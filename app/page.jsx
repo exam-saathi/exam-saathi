@@ -2,248 +2,545 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
-  ClipboardCheck,
-  Trophy,
-  PlayCircle,
+  Brain,
   CheckCircle2,
+  ChevronRight,
+  ClipboardCheck,
+  FileText,
   GraduationCap,
+  History,
+  Map,
+  PlayCircle,
+  Rocket,
+  ShieldCheck,
+  Sparkles,
+  Trophy,
+  Users,
+  Zap,
 } from "lucide-react";
+
+const subjects = [
+  {
+    title: "भारतीय राजव्यवस्था",
+    subtitle: "संविधान • शासन • संसद",
+    icon: ShieldCheck,
+    href: "/subjects",
+  },
+  {
+    title: "इतिहास",
+    subtitle: "प्राचीन • मध्यकालीन • आधुनिक",
+    icon: History,
+    href: "/subjects",
+  },
+  {
+    title: "भूगोल",
+    subtitle: "भौतिक • भारत • विश्व",
+    icon: Map,
+    href: "/subjects",
+  },
+  {
+    title: "अर्थव्यवस्था",
+    subtitle: "बैंकिंग • बजट • विकास",
+    icon: Brain,
+    href: "/subjects",
+  },
+  {
+    title: "विज्ञान",
+    subtitle: "भौतिक • रसायन • जीवविज्ञान",
+    icon: Zap,
+    href: "/subjects",
+  },
+  {
+    title: "उत्तर प्रदेश विशेष",
+    subtitle: "UP GK • UP Current Affairs",
+    icon: GraduationCap,
+    href: "/subjects",
+  },
+];
 
 const features = [
   {
     icon: ClipboardCheck,
-    title: "अभ्यास टेस्ट",
-    text: "विभिन्न प्रतियोगी परीक्षाओं के लिए नियमित अभ्यास करें।",
+    title: "Mock Tests",
+    text: "परीक्षा जैसे माहौल में अभ्यास करें",
+    href: "/mock-tests",
   },
   {
     icon: BookOpen,
-    title: "शॉर्ट नोट्स",
-    text: "महत्वपूर्ण टॉपिक्स को सरल हिंदी में दोहराएं।",
+    title: "Smart Learning",
+    text: "Subject से Topic तक व्यवस्थित तैयारी",
+    href: "/subjects",
+  },
+  {
+    icon: FileText,
+    title: "Short Notes",
+    text: "महत्वपूर्ण तथ्यों का quick revision",
+    href: "/notes",
   },
   {
     icon: Trophy,
-    title: "रैंकिंग",
-    text: "अपने टेस्ट प्रदर्शन को ट्रैक करें और प्रगति देखें।",
+    title: "Live Ranking",
+    text: "अपनी performance को track करें",
+    href: "/leaderboard",
   },
-];
-
-const subjects = [
-  "भारतीय राजव्यवस्था",
-  "इतिहास",
-  "भूगोल",
-  "अर्थव्यवस्था",
-  "विज्ञान",
-  "उत्तर प्रदेश विशेष",
 ];
 
 export default function HomePage() {
   return (
-    <div>
+    <main className="min-h-screen overflow-hidden bg-slate-950 text-white">
+      {/* Background glow */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="absolute left-[-15%] top-[-10%] h-[420px] w-[420px] rounded-full bg-blue-600/20 blur-[120px]" />
+        <div className="absolute right-[-10%] top-[25%] h-[380px] w-[380px] rounded-full bg-cyan-500/10 blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[30%] h-[400px] w-[400px] rounded-full bg-indigo-600/10 blur-[120px]" />
+      </div>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-slate-950">
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-blue-600/20 blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-orange-500/10 blur-3xl" />
-
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-2 md:items-center md:py-24">
-
-          <div>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-2 text-xs font-bold text-blue-300">
-              <GraduationCap size={16} />
-              प्रतियोगी परीक्षा तैयारी प्लेटफॉर्म
+      {/* HEADER */}
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          <Link href="/" className="group flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-blue-400/30 bg-gradient-to-br from-blue-600 to-cyan-500 shadow-lg shadow-blue-900/30">
+              <GraduationCap className="h-6 w-6" />
             </div>
 
-            <h1 className="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
-              तैयारी को बनाएं
-              <span className="block text-blue-400">
-                आसान और व्यवस्थित।
+            <div>
+              <div className="text-lg font-black tracking-tight">
+                Exam <span className="text-cyan-400">Saathi</span>
+              </div>
+              <div className="text-[9px] font-semibold tracking-[0.25em] text-slate-400">
+                LEARN • PRACTICE • ACHIEVE
+              </div>
+            </div>
+          </Link>
+
+          <nav className="hidden items-center gap-1 lg:flex">
+            <Link
+              href="/"
+              className="rounded-xl bg-white/10 px-4 py-2 text-sm font-medium text-white"
+            >
+              Home
+            </Link>
+
+            <Link
+              href="/subjects"
+              className="rounded-xl px-4 py-2 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+            >
+              Subjects
+            </Link>
+
+            <Link
+              href="/quizzes"
+              className="rounded-xl px-4 py-2 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+            >
+              Quizzes
+            </Link>
+
+            <Link
+              href="/mock-tests"
+              className="rounded-xl px-4 py-2 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+            >
+              Mock Tests
+            </Link>
+
+            <Link
+              href="/notes"
+              className="rounded-xl px-4 py-2 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+            >
+              Notes
+            </Link>
+
+            <Link
+              href="/leaderboard"
+              className="rounded-xl px-4 py-2 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+            >
+              Rank
+            </Link>
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <Link
+              href="/profile"
+              className="hidden rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-blue-400/30 hover:bg-white/10 sm:block"
+            >
+              Profile
+            </Link>
+
+            <Link
+              href="/mock-tests"
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-4 py-2.5 text-sm font-bold shadow-lg shadow-blue-900/30 transition hover:scale-[1.02]"
+            >
+              <Rocket className="h-4 w-4" />
+              <span className="hidden sm:inline">Start Test</span>
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="relative">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 pt-14 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:pb-28 lg:pt-20">
+          <div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-2 text-xs font-semibold text-blue-300">
+              <Sparkles className="h-4 w-4" />
+              आपकी तैयारी का Smart साथी
+            </div>
+
+            <h1 className="max-w-3xl text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-7xl">
+              मेहनत आपकी,
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent">
+                तैयारी हमारी।
               </span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-8 text-slate-300 sm:text-lg">
-              क्विज़, मॉक टेस्ट, नोट्स और कोर्स के साथ अपनी परीक्षा तैयारी
-              को एक जगह व्यवस्थित करें।
+            <p className="mt-6 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
+              Exam Saathi पर पढ़ें, अभ्यास करें और अपनी तैयारी को बेहतर बनाएं।
+              Subjects, quizzes, mock tests, notes और performance tracking —
+              सब एक जगह।
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/quizzes"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 font-bold text-white transition hover:bg-blue-500"
+                href="/mock-tests"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3.5 font-bold shadow-xl shadow-blue-950/40 transition hover:-translate-y-0.5"
               >
-                अभ्यास शुरू करें
-                <ArrowRight size={18} />
+                <PlayCircle className="h-5 w-5" />
+                अभी Test शुरू करें
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </Link>
 
               <Link
-                href="/mock-tests"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-white/5 px-6 py-3.5 font-bold text-white transition hover:bg-white/10"
+                href="/subjects"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-6 py-3.5 font-bold text-slate-200 backdrop-blur transition hover:bg-white/10"
               >
-                <PlayCircle size={18} />
-                मॉक टेस्ट
+                <BookOpen className="h-5 w-5" />
+                Subjects देखें
               </Link>
             </div>
-          </div>
 
-          {/* Hero card */}
-          <div className="mx-auto w-full max-w-md">
-            <div className="rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur">
-
-              <div className="rounded-2xl bg-white p-5 text-slate-900">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-semibold text-slate-500">
-                      आज का अभ्यास
-                    </p>
-                    <h2 className="mt-1 text-lg font-extrabold">
-                      सामान्य अध्ययन
-                    </h2>
-                  </div>
-
-                  <div className="rounded-xl bg-orange-50 px-3 py-2 text-xs font-bold text-orange-600">
-                    20 प्रश्न
-                  </div>
+            {/* Mini stats */}
+            <div className="mt-10 grid max-w-xl grid-cols-3 gap-3">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <div className="text-xl font-black text-white">100+</div>
+                <div className="mt-1 text-[11px] text-slate-500">
+                  Practice Questions
                 </div>
+              </div>
 
-                <div className="mt-5 h-2 overflow-hidden rounded-full bg-slate-100">
-                  <div className="h-full w-[65%] rounded-full bg-blue-600" />
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <div className="text-xl font-black text-white">24×7</div>
+                <div className="mt-1 text-[11px] text-slate-500">
+                  Learning Access
                 </div>
+              </div>
 
-                <div className="mt-2 flex justify-between text-xs text-slate-500">
-                  <span>प्रगति</span>
-                  <span>65%</span>
-                </div>
-
-                <div className="mt-5 grid grid-cols-3 gap-2">
-                  <div className="rounded-xl bg-emerald-50 p-3 text-center">
-                    <div className="font-bold text-emerald-600">12</div>
-                    <div className="text-[10px] text-slate-500">सही</div>
-                  </div>
-
-                  <div className="rounded-xl bg-red-50 p-3 text-center">
-                    <div className="font-bold text-red-500">3</div>
-                    <div className="text-[10px] text-slate-500">गलत</div>
-                  </div>
-
-                  <div className="rounded-xl bg-slate-100 p-3 text-center">
-                    <div className="font-bold text-slate-700">5</div>
-                    <div className="text-[10px] text-slate-500">बाकी</div>
-                  </div>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <div className="text-xl font-black text-white">Hindi</div>
+                <div className="mt-1 text-[11px] text-slate-500">
+                  Easy Preparation
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Hero dashboard card */}
+          <div className="relative mx-auto w-full max-w-xl">
+            <div className="absolute -inset-5 rounded-[2rem] bg-blue-500/10 blur-3xl" />
+
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/90 p-4 shadow-2xl shadow-black/40">
+              <div className="rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950/60 p-5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-xs font-semibold text-cyan-400">
+                      EXAM SAATHI
+                    </div>
+                    <div className="mt-1 text-xl font-black">
+                      आपकी तैयारी
+                    </div>
+                  </div>
+
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10">
+                    <Trophy className="h-5 w-5 text-cyan-300" />
+                  </div>
+                </div>
+
+                <div className="mt-6 rounded-2xl border border-blue-400/20 bg-gradient-to-br from-blue-600/20 to-cyan-500/5 p-5">
+                  <div className="text-xs text-slate-400">
+                    आज का लक्ष्य
+                  </div>
+
+                  <div className="mt-2 text-2xl font-black">
+                    तैयारी जारी रखें 🚀
+                  </div>
+
+                  <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+                    <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" />
+                  </div>
+
+                  <div className="mt-2 flex justify-between text-xs text-slate-400">
+                    <span>Daily Progress</span>
+                    <span>72%</span>
+                  </div>
+                </div>
+
+                <div className="mt-4 grid grid-cols-2 gap-3">
+                  <Link
+                    href="/mock-tests"
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:bg-white/[0.08]"
+                  >
+                    <ClipboardCheck className="h-5 w-5 text-blue-400" />
+                    <div className="mt-3 font-bold">Mock Tests</div>
+                    <div className="mt-1 text-xs text-slate-500">
+                      परीक्षा जैसा अभ्यास
+                    </div>
+                  </Link>
+
+                  <Link
+                    href="/leaderboard"
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:bg-white/[0.08]"
+                  >
+                    <Trophy className="h-5 w-5 text-amber-400" />
+                    <div className="mt-3 font-bold">Leaderboard</div>
+                    <div className="mt-1 text-xs text-slate-500">
+                      अपनी Rank देखें
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="mt-4 flex items-center gap-3 rounded-2xl border border-emerald-400/10 bg-emerald-400/5 p-4">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                  <div>
+                    <div className="text-sm font-bold">
+                      आज की तैयारी complete करें
+                    </div>
+                    <div className="text-xs text-slate-500">
+                      छोटा कदम, बेहतर तैयारी।
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="bg-white px-4 py-14">
-        <div className="mx-auto max-w-7xl">
-
-          <div className="text-center">
-            <p className="text-sm font-bold text-orange-500">
-              ExamSathi की सुविधाएं
-            </p>
-
-            <h2 className="mt-2 text-3xl font-black text-slate-900">
-              तैयारी के लिए जरूरी चीजें एक जगह
-            </h2>
-          </div>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+      {/* FEATURES */}
+      <section className="border-y border-white/5 bg-white/[0.02]">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((item) => {
               const Icon = item.icon;
 
               return (
-                <div
+                <Link
                   key={item.title}
-                  className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                  href={item.href}
+                  className="group rounded-2xl border border-white/10 bg-slate-900/60 p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-400/30 hover:bg-slate-900"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                    <Icon size={23} />
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
+                    <Icon className="h-5 w-5" />
                   </div>
 
-                  <h3 className="mt-5 text-lg font-extrabold">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-7 text-slate-500">
+                  <h3 className="mt-4 font-bold">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-slate-500">
                     {item.text}
                   </p>
-                </div>
+
+                  <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-cyan-400">
+                    Explore
+                    <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  </div>
+                </Link>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Subjects */}
-      <section className="bg-slate-50 px-4 py-14">
-        <div className="mx-auto max-w-7xl">
-
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div>
-              <p className="text-sm font-bold text-blue-600">
-                विषय
-              </p>
-
-              <h2 className="mt-1 text-3xl font-black">
-                अपनी तैयारी का विषय चुनें
-              </h2>
+      {/* SUBJECTS */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <div className="text-xs font-bold uppercase tracking-[0.25em] text-cyan-400">
+              Explore Subjects
             </div>
 
-            <Link
-              href="/subjects"
-              className="inline-flex items-center gap-2 text-sm font-bold text-blue-600"
-            >
-              सभी विषय
-              <ArrowRight size={17} />
-            </Link>
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">
+              विषयवार तैयारी
+            </h2>
+
+            <p className="mt-3 max-w-2xl text-slate-400">
+              अपनी परीक्षा के अनुसार विषय चुनें और step-by-step तैयारी करें।
+            </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {subjects.map((subject, index) => (
+          <Link
+            href="/subjects"
+            className="inline-flex items-center gap-2 text-sm font-bold text-cyan-400"
+          >
+            सभी Subjects
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {subjects.map((subject) => {
+            const Icon = subject.icon;
+
+            return (
               <Link
-                href="/subjects"
-                key={subject}
-                className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:border-blue-200 hover:shadow-md"
+                key={subject.title}
+                href={subject.href}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 to-slate-900/60 p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-400/30"
               >
-                <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 font-black text-blue-600">
-                  {index + 1}
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-blue-500/10 blur-2xl transition group-hover:bg-cyan-400/10" />
+
+                <div className="relative flex items-start justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400">
+                    <Icon className="h-6 w-6" />
+                  </div>
+
+                  <ArrowRight className="h-5 w-5 text-slate-600 transition group-hover:translate-x-1 group-hover:text-cyan-400" />
                 </div>
 
-                <p className="mt-3 text-sm font-bold leading-5 text-slate-700">
-                  {subject}
+                <h3 className="relative mt-6 text-lg font-black">
+                  {subject.title}
+                </h3>
+
+                <p className="relative mt-2 text-sm text-slate-500">
+                  {subject.subtitle}
                 </p>
               </Link>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="px-4 py-14">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-3xl bg-blue-600 px-6 py-12 text-center shadow-xl sm:px-10">
-          <CheckCircle2 className="mx-auto text-blue-100" size={38} />
+      <section className="px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-blue-400/20 bg-gradient-to-br from-blue-700/30 via-slate-900 to-cyan-600/10 p-8 sm:p-12">
+          <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-cyan-300">
+                <Users className="h-4 w-4" />
+                Exam Saathi
+              </div>
 
-          <h2 className="mt-4 text-3xl font-black text-white">
-            आज की तैयारी अभी शुरू करें
-          </h2>
+              <h2 className="mt-4 text-3xl font-black sm:text-4xl">
+                आज से तैयारी को
+                <br />
+                एक नई दिशा दें।
+              </h2>
 
-          <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-blue-100">
-            छोटे-छोटे अभ्यास सत्रों के साथ अपनी तैयारी को नियमित बनाएं।
-          </p>
+              <p className="mt-3 max-w-xl text-slate-400">
+                Test दें, अपनी गलतियाँ देखें, solutions पढ़ें और लगातार अपनी
+                preparation improve करें।
+              </p>
+            </div>
 
-          <Link
-            href="/signup"
-            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-blue-700 transition hover:bg-blue-50"
-          >
-            अकाउंट बनाएं
-            <ArrowRight size={18} />
-          </Link>
+            <Link
+              href="/mock-tests"
+              className="inline-flex shrink-0 items-center gap-2 rounded-2xl bg-white px-6 py-3.5 font-black text-slate-950 transition hover:scale-[1.02]"
+            >
+              <Rocket className="h-5 w-5" />
+              Start Preparation
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
-    </div>
+      {/* FOOTER */}
+      <footer className="border-t border-white/10 bg-black/20">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+            <div>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500">
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+
+                <div>
+                  <div className="font-black">
+                    Exam <span className="text-cyan-400">Saathi</span>
+                  </div>
+                  <div className="text-[9px] tracking-[0.2em] text-slate-500">
+                    LEARN • PRACTICE • ACHIEVE
+                  </div>
+                </div>
+              </div>
+
+              <p className="mt-3 max-w-md text-sm leading-6 text-slate-500">
+                बेहतर तैयारी, बेहतर practice और बेहतर learning experience के
+                लिए आपका digital exam साथी।
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {["Ethical Hacking", "Python Programming", "Education"].map(
+                (skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-medium text-slate-400"
+                  >
+                    {skill}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3 border-t border-white/5 pt-5 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between">
+            <span>
+              © {new Date().getFullYear()} Exam Saathi. All rights reserved.
+            </span>
+
+            <span className="font-semibold">
+              Developed with ❤️ by{" "}
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent">
+                LOYAL
+              </span>
+            </span>
+          </div>
+        </div>
+      </footer>
+
+      {/* MOBILE NAV */}
+      <div className="fixed bottom-3 left-3 right-3 z-50 lg:hidden">
+        <div className="grid grid-cols-4 rounded-2xl border border-white/10 bg-slate-950/90 p-2 shadow-2xl backdrop-blur-xl">
+          <Link
+            href="/"
+            className="flex flex-col items-center gap-1 rounded-xl bg-white/10 py-2 text-[10px] font-semibold text-cyan-300"
+          >
+            <GraduationCap className="h-4 w-4" />
+            Home
+          </Link>
+
+          <Link
+            href="/subjects"
+            className="flex flex-col items-center gap-1 rounded-xl py-2 text-[10px] font-semibold text-slate-400"
+          >
+            <BookOpen className="h-4 w-4" />
+            Subjects
+          </Link>
+
+          <Link
+            href="/mock-tests"
+            className="flex flex-col items-center gap-1 rounded-xl py-2 text-[10px] font-semibold text-slate-400"
+          >
+            <ClipboardCheck className="h-4 w-4" />
+            Tests
+          </Link>
+
+          <Link
+            href="/profile"
+            className="flex flex-col items-center gap-1 rounded-xl py-2 text-[10px] font-semibold text-slate-400"
+          >
+            <Users className="h-4 w-4" />
+            Profile
+          </Link>
+        </div>
+      </div>
+    </main>
   );
 }
