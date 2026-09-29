@@ -25,33 +25,6 @@ const tests = [
     status: "LIVE",
     href: "/mock-tests/uppcs-test-1",
   },
-  {
-    title: "Polity Practice Test",
-    subtitle: "संविधान एवं राजव्यवस्था",
-    questions: 50,
-    time: "60 मिनट",
-    level: "Practice",
-    status: "READY",
-    href: "/mock-tests",
-  },
-  {
-    title: "Geography Test",
-    subtitle: "भौतिक एवं भारतीय भूगोल",
-    questions: 50,
-    time: "60 मिनट",
-    level: "Practice",
-    status: "READY",
-    href: "/mock-tests",
-  },
-  {
-    title: "History Test",
-    subtitle: "आधुनिक भारतीय इतिहास",
-    questions: 50,
-    time: "60 मिनट",
-    level: "Practice",
-    status: "READY",
-    href: "/mock-tests",
-  },
 ];
 
 export default function MockTestsPage() {
@@ -130,7 +103,7 @@ export default function MockTestsPage() {
               </div>
 
               <Link
-                href="/mock-tests"
+                href="/mock-tests/uppcs-test-1"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3.5 font-black shadow-lg shadow-blue-950/40"
               >
                 Start Test
