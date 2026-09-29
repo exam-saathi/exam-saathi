@@ -19,11 +19,11 @@ const tests = [
   {
     title: "UPPCS Test 01",
     subtitle: "भारतीय राजव्यवस्था",
-    questions: 100,
+    questions: 150,
     time: "120 मिनट",
     level: "UPPCS",
     status: "LIVE",
-    href: "/mock-tests",
+    href: "/mock-tests/uppcs-test-1",
   },
   {
     title: "Polity Practice Test",
