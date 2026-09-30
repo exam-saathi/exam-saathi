@@ -11,7 +11,16 @@ export const testSeries = [
     title: "UPPSC Prelims Test Series",
     exam: "UPPSC",
     status: "LIVE",
-    tests: [],
+    tests: [
+      {
+        id: "uppsc-prelims-test-1",
+        title: "UPPCS Prelims Test 1",
+        questions: 150,
+        duration: 120,
+        medium: "Hindi",
+        negativeMarking: 0.33,
+      },
+    ],
   },
   {
     id: "up-all-exams",
