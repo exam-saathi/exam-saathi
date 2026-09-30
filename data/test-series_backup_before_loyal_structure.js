@@ -1,18 +1,15 @@
 export const testSeries = [
   {
     id: "upsc-prelims",
-    title: "UPSC Prelims",
+    title: "UPSC Prelims Test Series",
     exam: "UPSC",
-    category: "Tests",
     status: "LIVE",
     tests: [],
   },
-
   {
     id: "uppsc-prelims",
-    title: "UPPSC / UPPCS Prelims",
+    title: "UPPSC Prelims Test Series",
     exam: "UPPSC",
-    category: "Tests",
     status: "LIVE",
     tests: [
       {
@@ -22,27 +19,20 @@ export const testSeries = [
         duration: 120,
         medium: "Hindi",
         negativeMarking: 0.33,
-        questionFile: "uppcs_test1.json",
-        solutionFile: "uppcs_test1_solution_data.json",
-        status: "LIVE",
       },
     ],
   },
-
   {
     id: "up-all-exams",
-    title: "UP All Exams",
+    title: "UP All Exams Test Series",
     exam: "UP",
-    category: "Tests",
     status: "LIVE",
     tests: [],
   },
-
   {
     id: "bihar-all-exams",
-    title: "Bihar All Exams",
+    title: "Bihar All Exams Test Series",
     exam: "Bihar",
-    category: "Tests",
     status: "LIVE",
     tests: [],
   },
