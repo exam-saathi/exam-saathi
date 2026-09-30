@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, PlayCircle, BookOpen, UserRound } from "lucide-react";
 
 import Navbar from "@/components/common/Navbar";
+import LecturePlayer from "@/components/common/LecturePlayer";
 import { batches } from "@/data/batches";
 
 export function generateStaticParams() {
@@ -113,13 +114,49 @@ export default async function BatchPage({ params }) {
 
               {batch.sessions.map((session, index) => (
 
-                <a
+                <div
                   key={session.id}
-                  href={session.youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-cyan-400/30 hover:bg-white/[0.06]"
+                  className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
                 >
+
+                  <div className="flex items-center gap-4 p-5">
+
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-500/10">
+                      <PlayCircle className="h-6 w-6 text-red-400" />
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+
+                      <div className="text-[10px] font-bold text-cyan-400">
+                        LECTURE {String(index + 1).padStart(2, "0")}
+                      </div>
+
+                      <h3 className="mt-1 truncate font-bold">
+                        {session.title}
+                      </h3>
+
+                      <p className="mt-1 text-xs text-slate-500">
+                        {session.description}
+                      </p>
+
+                    </div>
+
+                    <span className="hidden text-sm font-bold text-cyan-300 sm:block">
+                      Watch on Website
+                    </span>
+
+                  </div>
+
+                  <div className="border-t border-white/10 p-3 sm:p-4">
+                    <LecturePlayer
+                      youtubeUrl={session.youtubeUrl}
+                      title={session.title}
+                    />
+                  </div>
+
+                </div>
+
+              ))}
 
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-500/10">
                     <PlayCircle className="h-6 w-6 text-red-400" />
