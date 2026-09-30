@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #020617;
+  color: white;
+}
+
+.loyal-heart {
+  animation: loyalColor 3s linear infinite;
+}
+
+@keyframes loyalColor {
+  0% { color: #60a5fa; }
+  25% { color: #22d3ee; }
+  50% { color: #fb923c; }
+  75% { color: #f472b6; }
+  100% { color: #a78bfa; }
+}

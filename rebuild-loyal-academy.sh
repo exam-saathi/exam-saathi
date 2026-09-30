@@ -1,3 +1,92 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -e
+
+echo "======================================"
+echo "      LOYAL ACADEMY REBUILD"
+echo "======================================"
+
+STAMP=$(date +%Y%m%d_%H%M%S)
+
+echo "[1/7] Old website backup..."
+mkdir -p "backup_before_loyal_academy_$STAMP"
+
+[ -d app ] && cp -r app "backup_before_loyal_academy_$STAMP/app"
+[ -d data ] && cp -r data "backup_before_loyal_academy_$STAMP/data"
+
+echo "[2/7] Creating clean structure..."
+rm -rf app
+mkdir -p app
+mkdir -p app/courses
+mkdir -p app/test-series
+mkdir -p app/batches
+mkdir -p app/results
+mkdir -p app/free-resources
+mkdir -p app/about
+mkdir -p app/contact
+mkdir -p app/login
+mkdir -p app/signup
+mkdir -p app/dashboard
+mkdir -p app/upsc
+mkdir -p app/uppsc
+mkdir -p app/up-exams
+mkdir -p app/bihar-exams
+mkdir -p app/api
+
+echo "[3/7] Creating root layout..."
+
+cat > app/layout.jsx <<'LAYOUT'
+import "./globals.css";
+
+export const metadata = {
+  title: "LOYAL ACADEMY | Learn • Practice • Achieve",
+  description:
+    "Professional competitive exam preparation platform for UPSC, UPPSC, UP Exams and Bihar Exams.",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="hi">
+      <body>{children}</body>
+    </html>
+  );
+}
+LAYOUT
+
+echo "[4/7] Creating global design..."
+
+cat > app/globals.css <<'CSS'
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(37,99,235,.18), transparent 28%),
+    radial-gradient(circle at 90% 20%, rgba(14,165,233,.12), transparent 28%),
+    #020617;
+  color: #f8fafc;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgba(59,130,246,.35);
+}
+CSS
+
+echo "[5/7] Creating professional homepage..."
+
+cat > app/page.jsx <<'PAGE'
 import Link from "next/link";
 
 const exams = [
@@ -203,4 +292,12 @@ export default function Home() {
       `}</style>
     </main>
   );
+}
+PAGE
+
+echo "[6/7] Creating basic pages..."
+
+cat > app/courses/page.jsx <<'EOF'
+export default function Courses() {
+  return <main className="min-h-screen p-10"><h1 className="text-4xl font-black">Courses</h1><p className="mt-4 text-slate-400">LOYAL ACADEMY Courses</p></main>;
 }
