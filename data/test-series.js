@@ -26,6 +26,14 @@ export const testSeries = [
         solutionFile: "uppcs_test1_solution_data.json",
         status: "LIVE",
       },
+      {
+        id: "uppsc-prelims-test-2",
+        title: "UPPCS Prelims Test 2 — Polity",
+        questions: 150,
+        duration: 120,
+        medium: "Hindi",
+        negativeMarking: 0.33,
+      },
     ],
   },
 
