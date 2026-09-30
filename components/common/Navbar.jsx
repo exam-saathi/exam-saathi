@@ -15,6 +15,27 @@ import {
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const loadUser = () => {
+      try {
+        const saved = localStorage.getItem("loyalAcademyUser");
+        setUser(saved ? JSON.parse(saved) : null);
+      } catch {
+        setUser(null);
+      }
+    };
+
+    loadUser();
+
+    window.addEventListener("storage", loadUser);
+    window.addEventListener("loyalAcademyUserChanged", loadUser);
+
+    return () => {
+      window.removeEventListener("storage", loadUser);
+      window.removeEventListener("loyalAcademyUserChanged", loadUser);
+    };
+  }, []);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
