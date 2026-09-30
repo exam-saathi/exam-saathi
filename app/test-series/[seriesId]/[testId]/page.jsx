@@ -25,7 +25,7 @@ export default async function TestPage({ params }) {
     seriesId === "uppsc-prelims" &&
     testId === "uppsc-prelims-test-1"
   ) {
-    const questions = questionsData;
+    const questions = Array.isArray(questionsData) ? questionsData : (questionsData.questions || []);
     const solutionMap = Object.fromEntries(
       solutionData.questions.map((item) => [
         String(item.id),
