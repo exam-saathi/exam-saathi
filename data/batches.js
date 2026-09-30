@@ -13,7 +13,32 @@ export const batches = [
       "आधुनिक इतिहास",
       "कला एवं संस्कृति",
     ],
-    sessions: [],
+    sessions: [
+      {
+        id: "history-lecture-01",
+        title: "Lecture 01",
+        description: "History by Khan Sir",
+        youtubeUrl: "https://youtu.be/dEm1b7xoWcM?si=Op3363g3fYucMV7w",
+      },
+      {
+        id: "history-lecture-02",
+        title: "Lecture 02",
+        description: "History by Khan Sir",
+        youtubeUrl: "https://youtu.be/PWZyAomujhc?si=L2wVDabxX_dg8yIl",
+      },
+      {
+        id: "history-lecture-03",
+        title: "Lecture 03",
+        description: "History by Khan Sir",
+        youtubeUrl: "https://youtu.be/F_HYaPPKM-0?si=UTUMhY0VCsHvk0z7",
+      },
+      {
+        id: "history-lecture-04",
+        title: "Lecture 04",
+        description: "History by Khan Sir",
+        youtubeUrl: "https://youtu.be/aaA8ONzaP74?si=u83OGatmZtgIKSge",
+      },
+    ],
   },
 
   {
